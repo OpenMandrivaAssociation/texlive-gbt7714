@@ -1,45 +1,36 @@
-Name:		texlive-gbt7714
-Version:	64633
-Release:	2
-Summary:	BibTeX implementation of China's bibliography style standard GB/T 7714-2015
+%global tl_name gbt7714
+%global tl_revision 79531
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	3.0.0
+Release:	%{tl_revision}.1
+Summary:	A BibTeX implementation of China National Standard GB/T 7714
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/gbt7714
+URL:		https://www.ctan.org/tex-archive/biblio/bibtex/contrib/gbt7714
 License:	lppl1.3c
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Requires:	texlive(bibtex)
+Requires:	texlive(natbib)
+Requires:	texlive(url)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The package provides a BibTeX implementation for the Chinese
-national bibliography style standard GB/T 7714-2015. It
-consists of two bst files for numerical and author-year styles
-as well as a LaTeX package which provides the citation style
-defined in the standard. The package is compatible with natbib
-and supports language detection (Chinese and English) for each
-biblilography entry.
+The package provides a comprehensive and configurable BibTeX
+implementation of the Chinese National Standard GB/T 7714, Information
+and documentation--Rules for bibliographic references and citations to
+information resources. The BibTeX styles included in the package support
+both numeric and author-year citation systems, and are fully compatible
+with the natbib package for advanced citation commands and formatting.
+These styles are designed to automatically detect the language (Chinese
+or English) of each bibliographic entry and apply the appropriate
+localization. Additionally, the package exposes a range of configuration
+options, allowing users to easily adapt the output to the requirements
+of specific academic journals or institutions.
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%doc %{_texmfdistdir}/source/bibtex/gbt7714
-%{_texmfdistdir}/tex/latex/gbt7714
-%{_texmfdistdir}/bibtex/bst/gbt7714
-%doc %{_texmfdistdir}/doc/bibtex/gbt7714
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
