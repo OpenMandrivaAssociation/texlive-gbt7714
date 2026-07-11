@@ -14,8 +14,6 @@ Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.doc.r%{t
 Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/gbt7714.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
 BuildSystem:	texlive
-BuildRequires:	texlive-tlpkg
-%texlive_base_requires
 Requires:	texlive(bibtex)
 Requires:	texlive(natbib)
 Requires:	texlive(url)
