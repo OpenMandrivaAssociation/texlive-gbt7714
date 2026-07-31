@@ -1,9 +1,9 @@
 %global tl_name gbt7714
-%global tl_revision 79531
+%global tl_revision 79717
 
 Name:		texlive-%{tl_name}
 Epoch:		1
-Version:	3.0.0
+Version:	3.0.1
 Release:	%{tl_revision}.1
 Summary:	A BibTeX implementation of China National Standard GB/T 7714
 Group:		Publishing
